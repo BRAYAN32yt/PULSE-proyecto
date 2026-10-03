@@ -1,0 +1,20 @@
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://YOUR-BACKEND-ORIGIN/api/:splat"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/geo/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/textures/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, immutable"
